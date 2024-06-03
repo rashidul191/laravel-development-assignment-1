@@ -33,7 +33,7 @@ function minNumber($value)
 }
 
 $arrSample1 = [10, 12, 15, 189, 22, 2, 34]; 
-// $minNumberFind = minNumber($arrSample2);
+// $minNumberFind = minNumber($arrSample1);
 // echo $minNumberFind;
 
 $arrSample2 = [10, -12, 34, 12, -3, 123];
