@@ -22,8 +22,19 @@ function countWorlds($paragraphs)
 {
     // return str_word_count($paragraphs);
 
-    $stringToArray = explode(' ', $paragraphs);
-    return count($stringToArray);
+
+    $stringToArrays = explode(' ', $paragraphs);
+    $worldsArray = [];
+    $pattern = "#[^(\w|\d|\'|\"|\.|\!|\?|;|,|\\|\/|\-|:|\&|@)]+#";
+    foreach ($stringToArrays as $stringToArray) {
+
+        $onlyString =  trim(preg_replace($pattern, " ", $stringToArray));
+
+        if ($onlyString !== "") {
+            array_push($worldsArray, $onlyString);
+        }
+    }
+    return count($worldsArray);
 }
 
 echo countWorlds($otherFileTextData);
