@@ -9,3 +9,17 @@ The result should be: ‘I evol gnimmargorp’
 Here the order of the words is the same as the given sentence, but the order of the characters in the words is reversed. 
 
 */
+
+function wordReveres($words)
+{
+
+    $strArrays = explode(" ", $words);
+    $revereString = '';
+    foreach ($strArrays as $strArray) :
+
+        $revereString .= strrev($strArray) . " ";
+
+    endforeach;
+    return  $revereString;
+}
+echo wordReveres("I love programming");
