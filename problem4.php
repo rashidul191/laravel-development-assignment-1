@@ -19,14 +19,18 @@ function pattern($num)
 {
 
     for ($i = 1; $i <= $num; $i++) {
-        for ($j = 1; $j <= $num - $i; $j++) {
+        for ($j = $i; $j <= $num-1; $j++) {
             echo " ";
         }
-        for ($x = 1; $x <= 2*$i-1; $x++) {
+        for ($x = 1; $x <= $i; $x++) {
             echo "*";
+
+            if($x > 1){
+                echo "*";
+            }
         }
         echo "\n";
     }
 }
 
-pattern(5);
+pattern(10);
