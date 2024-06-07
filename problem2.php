@@ -17,24 +17,39 @@ You need to read the data from a file.
 
 $otherFileTextData =  file_get_contents('simple.txt');
 
-
-function countWorlds($paragraphs)
+// Solution 1
+function countWorldsStr($paragraphs)
 {
-    // return str_word_count($paragraphs);
+    return str_word_count($paragraphs);
+}
+// echo countWorldsStr($otherFileTextData);
 
+// Solution 2
+function countWorlds($linesParas)
+{
+    $wordCount = [];
+    foreach ($linesParas as $linesPara) :
+        $singleLine = trim($linesPara);
+        if ($singleLine !== "") :
+            $stringToArray = explode(" ", $singleLine);
+            foreach ($stringToArray as $str) :
+                $onlyWord = trim($str);
 
-    $stringToArrays = explode(' ', $paragraphs);
-    $worldsArray = [];
-    $pattern = "#[^(\w|\d|\'|\"|\.|\!|\?|;|,|\\|\/|\-|:|\&|@)]+#";
-    foreach ($stringToArrays as $stringToArray) {
-
-        $onlyString =  trim(preg_replace($pattern, " ", $stringToArray));
-
-        if ($onlyString !== "") {
-            array_push($worldsArray, $onlyString);
-        }
-    }
-    return count($worldsArray);
+                if ($onlyWord !== '') :
+                    array_push($wordCount, $onlyWord);
+                endif;
+            endforeach;
+        endif;
+    endforeach;
+    return count($wordCount);
 }
 
-echo countWorlds($otherFileTextData);
+$otherFileTextData2 = fopen('simple.txt', "r");
+$linesPara    = [];
+
+if ($otherFileTextData2) {
+    while (!feof($otherFileTextData2)) {
+        $linesPara[] = fgets($otherFileTextData2);
+    }
+}
+echo countWorlds($linesPara);
